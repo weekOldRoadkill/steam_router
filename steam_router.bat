@@ -1,1 +1,1 @@
-.hererocks\bin\lua main.lua
+.hererocks\bin\lua main.lua %*
