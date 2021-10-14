@@ -5,11 +5,10 @@ local http = require("socket.http")
 
 
 
--- Code
+-- Argument Parsing
 local parser = argparse(
     "steam_router",
-    "Finds the fastest path from one steam user to another going through users' friends lists.",
-    "Have fun! :D"
+    "Finds the fastest path from one steam user to another going through users' friends lists."
 )
 
 parser:argument("key", "Steam Web API key.")
@@ -18,4 +17,13 @@ parser:argument("target", "Steam user ID to search for.")
 
 local args = parser:parse()
 
-for k, v in pairs(args) do print(k.." = "..v) end
+
+
+
+-- Code
+local json = http.request("http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key="..
+args.key.."&steamid="..args.source)
+
+for id in json:gmatch("\"%d+\"") do
+    print(id:sub(0x02, -0x02))
+end
