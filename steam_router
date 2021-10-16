@@ -1,2 +1,2 @@
-#! /usr/bin/env -S sh
+#! /usr/bin/env sh
 .hererocks/bin/lua main.lua ${@}
